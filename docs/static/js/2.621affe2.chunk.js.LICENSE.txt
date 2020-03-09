@@ -1,0 +1,78 @@
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
+*/
+
+/*!
+ * A CredentialHandlerRegistration provides a CredentialManager to enable Web
+ * apps to register Profiles that can be presented to websites.
+ *
+ * Copyright (c) 2017 Digital Bazaar, Inc. All rights reserved.
+ */
+
+/*!
+ * A CredentialManager for a Web Credential Mediator.
+ *
+ * Copyright (c) 2017-2018 Digital Bazaar, Inc. All rights reserved.
+ */
+
+/*!
+ * A CredentialRequestEvent is emitted when a request has been made for
+ * credentials.
+ *
+ * Copyright (c) 2017 Digital Bazaar, Inc. All rights reserved.
+ */
+
+/*!
+ * A WebApp is a remote application that runs in a WebAppContext.
+ *
+ * Copyright (c) 2017 Digital Bazaar, Inc. All rights reserved.
+ */
+
+/*!
+ * Copyright (c) 2017 Digital Bazaar, Inc. All rights reserved.
+ */
+
+/*!
+ * Copyright (c) 2017-2018 Digital Bazaar, Inc. All rights reserved.
+ */
+
+/*!
+ * Credential Handler API Polyfill.
+ *
+ * Copyright (c) 2017-2018 Digital Bazaar, Inc. All rights reserved.
+ */
+
+/*!
+ * Utilities for Web Request RPC.
+ *
+ * Copyright (c) 2017 Digital Bazaar, Inc. All rights reserved.
+ */
+
+/** @license React v0.19.0
+ * scheduler.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @license React v16.13.0
+ * react-dom.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @license React v16.13.0
+ * react.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
