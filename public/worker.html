@@ -9,13 +9,15 @@
 <body>
 
 <script>
+  const WALLET_LOCATION = window.origin;
+  
   async function activateHandler() {
     try {
       await credentialHandlerPolyfill.loadOnce();
     } catch(e) {
       console.error('Error in loadOnce:', e);
     }
-    const WALLET_LOCATION = window.origin;
+    
     return WebCredentialHandler.activateHandler({
       async get(event) {
         return {
