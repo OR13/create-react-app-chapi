@@ -26,7 +26,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "npm run build && mv ./build ./docs && cp ./docs/index.html ./docs/404.html && git add ./docs && git commit -m ':rocket:' && git push origin master"
+    "deploy": "rm -rf ./docs && npm run build && mv ./build ./docs && cp ./docs/index.html ./docs/404.html && git add ./docs && git commit -m ':rocket:' && git push origin master"
   },
   "eslintConfig": {
     "extends": "react-app"
