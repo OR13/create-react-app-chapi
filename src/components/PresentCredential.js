@@ -14,15 +14,16 @@ import MenuItem from '@material-ui/core/MenuItem';
 
 import JSONEditor from './JSONEditor'
 
+import { getChapiQuery } from '../help';
 
-const currencies = [
+const options = [
   {
     value: 'UniversityDegreeCredential',
     label: 'UniversityDegreeCredential',
   },
   {
-    value: 'other...',
-    label: 'other',
+    value: 'DIDAuth',
+    label: 'DIDAuth',
   },
 
 ];
@@ -68,13 +69,13 @@ function PresentCredential() {
         <TextField
           id="outlined-select-credentialType"
           select
+          required
           label="Credential Type"
           value={state.credentialType}
           onChange={handleChange}
-          helperText="Please select your a Credential Type"
           variant="outlined"
         >
-          {currencies.map(option => (
+          {options.map(option => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
@@ -82,29 +83,8 @@ function PresentCredential() {
         </TextField>
         <div style={{ marginTop: '16px', marginBottom: '16px' }}>
           <Button variant={'contained'} onClick={async () => {
-
-            const credentialQuery = {
-              web: {
-                VerifiablePresentation: {
-                  query: [
-                    {
-                      type: 'QueryByExample',
-                      credentialQuery: {
-                        reason: `Please present an ${state.credentialType} for JaneDoe.`,
-                        example: {
-                          '@context': [
-                            'https://www.w3.org/2018/credentials/v1',
-                            'https://www.w3.org/2018/credentials/examples/v1',
-                          ],
-                          type: [state.credentialType],
-                        },
-                      },
-                    },
-                  ],
-                },
-              },
-            };
-            const result = await navigator.credentials.get(credentialQuery);
+            const query = getChapiQuery(state.credentialType);
+            const result = await navigator.credentials.get(query);
             // normally submit credential to http endpoint.. display for demo...
             setState({
               ...state,

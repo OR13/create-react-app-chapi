@@ -15,6 +15,22 @@ import { getVP } from '../help';
 
 import JSONEditor from './JSONEditor'
 
+import MenuItem from '@material-ui/core/MenuItem';
+
+
+
+const options = [
+  {
+    value: 'UniversityDegreeCredential',
+    label: 'UniversityDegreeCredential',
+  },
+  {
+    value: 'DIDAuth',
+    label: 'DIDAuth',
+  },
+
+];
+
 function ReceiveCredential() {
 
   const [panelValues, setPanelValues] = React.useState({
@@ -23,7 +39,13 @@ function ReceiveCredential() {
 
   const [state, setState] = React.useState({
     credentialSubjectId: 'did:example:credential-subject-123',
+    credentialType: 'UniversityDegreeCredential'
   });
+
+
+  const handleChange = event => {
+    setState({ ...state, credentialType: event.target.value });
+  };
 
   const handleChangePanels = panel => () => {
     setPanelValues({
@@ -48,6 +70,23 @@ function ReceiveCredential() {
         <Typography>Receive Credential from Website</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails style={{ flexDirection: 'column' }} >
+
+        <TextField
+          id="outlined-select-credentialType"
+          select
+          required
+          label="Credential Type"
+          style={{ "marginBottom": '16px' }}
+          value={state.credentialType}
+          onChange={handleChange}
+          variant="outlined"
+        >
+          {options.map(option => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
         <TextField
           required
           id="credentialSubjectId"
@@ -88,8 +127,16 @@ function ReceiveCredential() {
             });
             console.log('Wallet registered.');
 
+            let proofPurposeOptions = {};
+            if (state.credentialType === 'DIDAuth') {
+              proofPurposeOptions = {
+                domain: 'issuer.example.com',
+                challenge: '99612b24-63d9-11ea-b99f-4f66f3e4f81a',
+              }
+            }
+
             // Normally get from authenticated network request...
-            const vp = await getVP(state.credentialSubjectId);
+            const vp = await getVP(state.credentialType, state.credentialSubjectId, proofPurposeOptions);
             const webCredentialWrapper = new global.WebCredential(vp.type, vp);
             // Use Credential Handler API to store
             const result = await navigator.credentials.store(webCredentialWrapper);
